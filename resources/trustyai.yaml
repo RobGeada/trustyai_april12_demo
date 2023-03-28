@@ -1,0 +1,21 @@
+apiVersion: kfdef.apps.kubeflow.org/v1
+kind: KfDef
+metadata:
+  name: odh-trustyai
+spec:
+  applications:
+    - kustomizeConfig:
+        repoRef:
+          name: manifests
+          path: odh-common
+      name: odh-common
+    - kustomizeConfig:
+        repoRef:
+          name: manifests
+          path: trustyai-service
+      name: trustyai
+  repos:
+    - name: manifests
+      uri: https://api.github.com/repos/robgeada/odh-manifests/tarball/FAI-957-trustyai
+  version: master
+
