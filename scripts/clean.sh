@@ -5,6 +5,9 @@ MM_NAMESPACE=trustyai-e2e-modelmesh
 oc new-project $ODH_NAMESPACE
 oc new-project $MM_NAMESPACE
 
+
+
+
 for PROJECT in $ODH_NAMESPACE $MM_NAMESPACE
 do
   oc project $PROJECT

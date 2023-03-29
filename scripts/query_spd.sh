@@ -1,17 +1,17 @@
 ODH_NAMESPACE=trustyai-e2e
 MM_NAMESPACE=trustyai-e2e-modelmesh
 
-oc project $ODH_NAMESPACE
-TRUSTY_ROUTE=$(oc get route/trustyai-service-route --template={{.spec.host}})
+oc project $ODH_NAMESPACE 2>&1 1>/dev/null
+TRUSTY_ROUTE=$(oc get route/trustyai --template={{.spec.host}})
 
-curl -X POST --location "http://$TRUSTY_ROUTE/metrics/spd" \
+SPD=$(curl -X POST --location "http://$TRUSTY_ROUTE/metrics/spd" \
     -H "Content-Type: application/json" \
     -d "{
           \"modelId\": \"demo-loan-rfc\",
           \"protectedAttribute\": \"input-3\",
           \"favorableOutcome\": {
-            \"type\": \"INT64\",
-            \"value\": 1
+            \"type\": \"INT32\",
+            \"value\": 0
           },
           \"outcomeName\": \"output-0\",
           \"privilegedAttribute\": {
@@ -22,4 +22,10 @@ curl -X POST --location "http://$TRUSTY_ROUTE/metrics/spd" \
             \"type\": \"DOUBLE\",
             \"value\": 0.0
           }
-        }"
+        }")
+
+echo
+echo "== SPD BIAS REPORT =="
+echo "SPD Value: $(echo $SPD | jq .value)"
+echo $(echo $SPD | jq .specificDefinition)
+echo "Unacceptably biased?" $(echo $SPD | jq .thresholds.outsideBounds)

@@ -7,9 +7,6 @@ oc new-project $ODH_NAMESPACE
 oc new-project $MM_NAMESPACE
 
 oc project $ODH_NAMESPACE
-# clone the target branch
-[ -d "odh-manifests" ] && rm -Rf odh-manifests
-git clone --branch "$2" "https://github.com/$1/odh-manifests.git"
 
 # deploy a minimal ODH install  ========================================================================================
 oc apply -f resources/odh-minimal.yaml

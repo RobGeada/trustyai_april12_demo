@@ -16,6 +16,6 @@ spec:
       name: trustyai
   repos:
     - name: manifests
-      uri: https://api.github.com/repos/robgeada/odh-manifests/tarball/FAI-957-trustyai
+      uri: https://api.github.com/repos/robgeada/odh-manifests/tarball/TrustyAIDemo
   version: master
 
