@@ -20,6 +20,26 @@ do
   echo "Waiting on trustyai pod to spin up"
   sleep 5
 done
+#
+#ODH_NAMESPACE=trustyai-e2e
+#MM_NAMESPACE=trustyai-e2e-modelmesh
+#oc new-project $ODH_NAMESPACE
+#oc new-project $MM_NAMESPACE
+#
+#oc project $ODH_NAMESPACE
+#
+## deploy a minimal ODH install  ========================================================================================
+#oc apply -f resources/rhods-minimal.yaml
+#
+## deploy TrustyAI  =====================================================================================================
+#oc apply -f resources/trustyai.yaml
+#
+## wait for TrustyAI to spin up
+#while [[ -z "$(oc get pods | grep trustyai-service | grep 1/1)" ]]
+#do
+#  echo "Waiting on trustyai pod to spin up"
+#  sleep 5
+#done
 
 ### deploy ModelMesh ====================================================================================================
 #oc apply -f model.yaml

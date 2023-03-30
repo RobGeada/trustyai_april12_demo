@@ -23,7 +23,7 @@ done
 
 INFER_ROUTE_ALPHA=$(oc get route demo-loan-rfc-alpha --template={{.spec.host}}{{.spec.path}})
 #while [[ -z "$(curl -k https://$INFER_ROUTE/infer -d @data.json | grep demo-loan-xgboost >/dev/null 2>&1)" ]]
-while [[ -z "$(curl -k https://$INFER_ROUTE_ALPHA/infer -d @resources/dummy_data.json | grep demo-loan-rfc-alpha)" ]]
+while [[ -z "$(curl -s -k https://$INFER_ROUTE_ALPHA/infer -d @resources/dummy_data.json | grep demo-loan-rfc-alpha)" ]]
 do
   echo "Wait for modelserving endpoint to begin serving..."
   sleep 5
@@ -31,7 +31,7 @@ done
 
 INFER_ROUTE_BETA=$(oc get route demo-loan-rfc-beta --template={{.spec.host}}{{.spec.path}})
 #while [[ -z "$(curl -k https://$INFER_ROUTE/infer -d @data.json | grep demo-loan-xgboost >/dev/null 2>&1)" ]]
-while [[ -z "$(curl -k https://$INFER_ROUTE_BETA/infer -d @resources/dummy_data.json | grep demo-loan-rfc-beta)" ]]
+while [[ -z "$(curl -s -k https://$INFER_ROUTE_BETA/infer -d @resources/dummy_data.json | grep demo-loan-rfc-beta)" ]]
 do
   echo "Wait for modelserving endpoint to begin serving..."
   sleep 5
