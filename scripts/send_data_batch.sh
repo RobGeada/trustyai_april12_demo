@@ -22,7 +22,7 @@ check_for_reception () {
     THRESH=$(( $1 * 975 / 1000 ))
     N_OBS=$(oc exec $TRUSTY_POD  -c trustyai-service -- bash -c "cat /inputs/demo-loan-rfc-$2-metadata.json"  | jq .observations)
     echo -ne "\rMaking sure TrustyAI $2 dataset contains at least $THRESH points, has $N_OBS";
-    if [ $N_OBS > $THRESH ]; then
+    if (( $N_OBS > $THRESH )); then
       break
     else
       sleep 1
