@@ -1,7 +1,7 @@
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
-  name: demo-loan-rfc
+  name: demo-loan-rfc-beta
   annotations:
     serving.kserve.io/deploymentMode: ModelMesh
 spec:
@@ -10,4 +10,4 @@ spec:
       modelFormat:
         name: sklearn
       runtime: mlserver-0.x
-      storageUri: "https://github.com/RobGeada/trustyai_april12_demo/blob/main/resources/loan_model.sav?raw=true"
+      storageUri: "https://github.com/RobGeada/trustyai_april12_demo/blob/main/resources/loan_model2.sav?raw=true"

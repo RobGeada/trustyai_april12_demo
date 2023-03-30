@@ -12,6 +12,7 @@ oc apply -f resources/odh-mlserver-0.x.yaml
 oc new-project $MM_NAMESPACE
 oc project $MM_NAMESPACE
 oc apply -f resources/model.yaml
+oc apply -f resources/model2.yaml
 
 # wait to spin up ======================================================================================================
 while [[ -z "$(oc get pods | grep modelmesh-serving | grep 5/5)" ]]
