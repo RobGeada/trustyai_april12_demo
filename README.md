@@ -31,7 +31,18 @@ Run all of the following from the main directory:
 #### Delete all metric requests:
 `scripts/delete_all_requests.sh`
 
-
-
 ## Clean up
 `scripts/clean.sh`
+
+
+# Suggested Script Order
+```bash
+scripts/install.sh
+scripts/deploy_models.sh
+scripts/send_data_batch training_data
+scripts/query_fairness_metrics.sh
+scripts/register_metric_monitoring.sh
+scripts/simulate_deployment.sh
+
+scripts/clean.sh
+```
