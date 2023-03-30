@@ -44,9 +44,8 @@ spec:
     name: modelmesh-monitoring
   repos:
   - name: trustyai-pr-images-manifests
-    #uri: https://github.com/opendatahub-io/odh-manifests/tarball/master
     uri: https://github.com/robgeada/odh-manifests/tarball/trustyai-pr-images
   - name: manifests
-    uri: https://github.com/opendatahub-io/odh-manifests/tarball/master
+    uri: https://github.com/robgeada/odh-manifests/tarball/TrustyAIDemo
   version: master
 

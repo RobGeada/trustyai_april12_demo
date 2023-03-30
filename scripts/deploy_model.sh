@@ -28,3 +28,5 @@ do
   sleep 5
 done
 
+scripts/delete_data.sh
+

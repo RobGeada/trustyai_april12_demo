@@ -10,7 +10,7 @@ LOOP_IDX=0
 NFILES=$(ls resources/data_json/$1/*.json | wc -l | xargs)
 THRESHOLD="${2:-$NFILES}"
 BATCH_SIZE=500
-PAUSE_TIME=0
+PAUSE_TIME=0.005
 
 oc project $ODH_NAMESPACE 2>&1 1>/dev/null
 
@@ -44,7 +44,8 @@ do
   fi
 
   echo -ne "\rSent datapoint $(( $LOOP_IDX + 1 )) of $THRESHOLD"
-  curl -k https://$INFER_ROUTE/infer -d @$data > /dev/null 2>&1 &
+  curl -k https://$INFER_ROUTE/infer -d @$data  > /dev/null 2>&1  &
+
   sleep $PAUSE_TIME
 
   if [[ "$LOOP_IDX" -ge $(( $THRESHOLD - 1 )) ]]; then

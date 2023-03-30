@@ -3,10 +3,10 @@
 ODH_NAMESPACE=trustyai-e2e
 oc project $ODH_NAMESPACE 2>&1 1>/dev/null
 
-LOOP_IDX=0
+LOOP_IDX=1
 for batch in $(ls resources/data_json)
 do
-  if [ "$batch" = "batch_0" ]; then
+  if [ "$batch" = "training_data" ]; then
     :
   else
     echo "===== Deployment Day $LOOP_IDX ====="
