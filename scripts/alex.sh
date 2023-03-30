@@ -1,4 +1,3 @@
-echo "s/resources\/odh-minimal.yaml/${1}/g"
 sed "s&resources/odh-minimal.yaml&${1}&g" scripts/install.sh > scripts/alex_install.sh
 
 scripts/alex_install.sh
