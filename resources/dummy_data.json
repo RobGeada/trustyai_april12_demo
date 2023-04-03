@@ -1,7 +1,7 @@
 {
   "inputs": [
     {
-      "name": "Loan Accepted",
+      "name": "batch_normalization_1_input",
       "shape": [1, 11],
       "datatype": "FP64",
       "data": [1.0, 112500.0, 2.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 11998.0, 1135.0]

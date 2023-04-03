@@ -4,8 +4,8 @@ ODH_NAMESPACE=trustyai-e2e
 MM_NAMESPACE=trustyai-e2e-modelmesh
 
 oc project $MM_NAMESPACE 2>&1 1>/dev/null
-INFER_ROUTE_ALPHA=$(oc get route demo-loan-rfc-alpha --template={{.spec.host}}{{.spec.path}})
-INFER_ROUTE_BETA=$(oc get route demo-loan-rfc-beta --template={{.spec.host}}{{.spec.path}})
+INFER_ROUTE_ALPHA=$(oc get route demo-loan-rfc-alpha-onnx --template={{.spec.host}}{{.spec.path}})
+INFER_ROUTE_BETA=$(oc get route demo-loan-rfc-beta-onnx --template={{.spec.host}}{{.spec.path}})
 
 LOOP_IDX=0
 NFILES=$(ls resources/data_json/$1/*.json | wc -l | xargs)
