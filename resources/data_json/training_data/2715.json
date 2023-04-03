@@ -1,7 +1,7 @@
 {
   "inputs": [
     {
-      "name": "model_input",
+      "name": "customer_data_input",
       "shape": [1, 11],
       "datatype": "FP64",
       "data": [2.0, 157500.0, 4.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 12518.0, 1135.0, 1.0]
