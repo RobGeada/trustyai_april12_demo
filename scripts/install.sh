@@ -15,11 +15,13 @@ oc apply -f resources/odh-minimal.yaml
 oc apply -f resources/trustyai.yaml
 
 # wait for TrustyAI to spin up
+echo -n "Waiting on trustyai pod to spin up"
 while [[ -z "$(oc get pods | grep trustyai-service | grep 1/1)" ]]
 do
-  echo "Waiting on trustyai pod to spin up"
+  echo -n "."
   sleep 5
 done
+echo "[done]"
 #
 #ODH_NAMESPACE=trustyai-e2e
 #MM_NAMESPACE=trustyai-e2e-modelmesh

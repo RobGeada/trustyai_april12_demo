@@ -20,7 +20,7 @@ check_for_reception () {
   while true
   do
     THRESH=$(( $1 * 975 / 1000 ))
-    N_OBS=$(oc exec $TRUSTY_POD  -c trustyai-service -- bash -c "cat /inputs/demo-loan-rfc-$2-metadata.json"  | jq .observations)
+    N_OBS=$(oc exec $TRUSTY_POD  -c trustyai-service -- bash -c "cat /inputs/demo-loan-rfc-$2-onnx-metadata.json"  | jq .observations)
     echo -ne "\rMaking sure TrustyAI $2 dataset contains at least $THRESH points, has $N_OBS";
     if (( $N_OBS > $THRESH )); then
       break
@@ -35,7 +35,7 @@ check_for_reception () {
 if [[ -z $(oc exec $TRUSTY_POD -c trustyai-service -- bash -c "ls /inputs/ | grep demo-loan-rfc-alpha") ]]; then
   START_OBS_ALPHA=0
 else
-  START_OBS_ALPHA=$(oc exec $TRUSTY_POD -c trustyai-service -- bash -c "cat /inputs/demo-loan-rfc-alpha-metadata.json"  | jq .observations)
+  START_OBS_ALPHA=$(oc exec $TRUSTY_POD -c trustyai-service -- bash -c "cat /inputs/demo-loan-rfc-alpha-onnx-metadata.json"  | jq .observations)
 fi
 echo "$START_OBS_ALPHA datapoints already in ALPHA dataset"
 
@@ -43,7 +43,7 @@ echo "$START_OBS_ALPHA datapoints already in ALPHA dataset"
 if [[ -z $(oc exec $TRUSTY_POD  -c trustyai-service -- bash -c "ls /inputs/ | grep demo-loan-rfc-beta") ]]; then
   START_OBS_BETA=0
 else
-  START_OBS_BETA=$(oc exec $TRUSTY_POD -c trustyai-service -- bash -c "cat /inputs/demo-loan-rfc-beta-metadata.json"  | jq .observations)
+  START_OBS_BETA=$(oc exec $TRUSTY_POD -c trustyai-service -- bash -c "cat /inputs/demo-loan-rfc-beta-onnx-metadata.json"  | jq .observations)
 fi
 echo "$START_OBS_BETA datapoints already in BETA dataset"
 
