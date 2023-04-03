@@ -8,6 +8,6 @@ spec:
   predictor:
     model:
       modelFormat:
-        name: sklearn
+        name: onnx
       runtime: mlserver-0.x
-      storageUri: "https://github.com/RobGeada/trustyai_april12_demo/blob/main/resources/loan_model0.sav?raw=true"
+      storageUri: "https://github.com/RobGeada/trustyai_april12_demo/blob/main/resources/loan_model_alpha.onnx?raw=true"

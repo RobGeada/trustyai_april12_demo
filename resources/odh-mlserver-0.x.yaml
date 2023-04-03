@@ -30,6 +30,9 @@ spec:
     - name: lightgbm
       version: "3" # v3.2.1
       autoSelect: true
+    - name: onnx
+      version: "1" # v3.2.1
+      autoSelect: true
 
   protocolVersions:
     - grpc-v2
