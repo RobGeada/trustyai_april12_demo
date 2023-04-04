@@ -4,8 +4,8 @@ ODH_NAMESPACE=trustyai-e2e
 MM_NAMESPACE=trustyai-e2e-modelmesh
 
 oc project $MM_NAMESPACE 2>&1 1>/dev/null
-INFER_ROUTE_ALPHA=$(oc get route demo-loan-rfc-alpha-onnx --template={{.spec.host}}{{.spec.path}})
-INFER_ROUTE_BETA=$(oc get route demo-loan-rfc-beta-onnx --template={{.spec.host}}{{.spec.path}})
+INFER_ROUTE_ALPHA=$(oc get route demo-loan-nn-alpha-onnx --template={{.spec.host}}{{.spec.path}})
+INFER_ROUTE_BETA=$(oc get route demo-loan-nn-beta-onnx --template={{.spec.host}}{{.spec.path}})
 
 LOOP_IDX=0
 NFILES=$(ls resources/data_json/$1/*.json | wc -l | xargs)
@@ -20,7 +20,7 @@ check_for_reception () {
   while true
   do
     THRESH=$(( $1 * 975 / 1000 ))
-    N_OBS=$(oc exec $TRUSTY_POD  -c trustyai-service -- bash -c "cat /inputs/demo-loan-rfc-$2-onnx-metadata.json"  | jq .observations)
+    N_OBS=$(oc exec $TRUSTY_POD  -c trustyai-service -- bash -c "cat /inputs/demo-loan-nn-$2-onnx-metadata.json"  | jq .observations)
     echo -ne "\rMaking sure TrustyAI $2 dataset contains at least $THRESH points, has $N_OBS";
     if (( $N_OBS > $THRESH )); then
       break
@@ -32,18 +32,18 @@ check_for_reception () {
 }
 
 # Init first dataset counter
-if [[ -z $(oc exec $TRUSTY_POD -c trustyai-service -- bash -c "ls /inputs/ | grep demo-loan-rfc-alpha") ]]; then
+if [[ -z $(oc exec $TRUSTY_POD -c trustyai-service -- bash -c "ls /inputs/ | grep demo-loan-nn-alpha") ]]; then
   START_OBS_ALPHA=0
 else
-  START_OBS_ALPHA=$(oc exec $TRUSTY_POD -c trustyai-service -- bash -c "cat /inputs/demo-loan-rfc-alpha-onnx-metadata.json"  | jq .observations)
+  START_OBS_ALPHA=$(oc exec $TRUSTY_POD -c trustyai-service -- bash -c "cat /inputs/demo-loan-nn-alpha-onnx-metadata.json"  | jq .observations)
 fi
 echo "$START_OBS_ALPHA datapoints already in ALPHA dataset"
 
 # Init second dataset counter
-if [[ -z $(oc exec $TRUSTY_POD  -c trustyai-service -- bash -c "ls /inputs/ | grep demo-loan-rfc-beta") ]]; then
+if [[ -z $(oc exec $TRUSTY_POD  -c trustyai-service -- bash -c "ls /inputs/ | grep demo-loan-nn-beta") ]]; then
   START_OBS_BETA=0
 else
-  START_OBS_BETA=$(oc exec $TRUSTY_POD -c trustyai-service -- bash -c "cat /inputs/demo-loan-rfc-beta-onnx-metadata.json"  | jq .observations)
+  START_OBS_BETA=$(oc exec $TRUSTY_POD -c trustyai-service -- bash -c "cat /inputs/demo-loan-nn-beta-onnx-metadata.json"  | jq .observations)
 fi
 echo "$START_OBS_BETA datapoints already in BETA dataset"
 

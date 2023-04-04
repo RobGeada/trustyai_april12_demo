@@ -16,7 +16,7 @@ do
     METRIC=$(curl -s -X POST --location "http://$TRUSTY_ROUTE/metrics/$METRIC_NAME" \
         -H "Content-Type: application/json" \
         -d "{
-              \"modelId\": \"demo-loan-rfc-$MODEL\",
+              \"modelId\": \"demo-loan-nn-$MODEL-onnx\",
               \"protectedAttribute\": \"input-3\",
               \"favorableOutcome\": {
                 \"type\": \"INT32\",
@@ -32,6 +32,8 @@ do
                 \"value\": 0.0
               }
             }") 2>&1 1>/dev/null
+
+    #echo $METRIC
 
     METRIC=$(echo $METRIC | sed -e 's/Group:input-3=1.0/Group:Gender=MALE/')
     METRIC=$(echo $METRIC | sed -e 's/Group:input-3=0.0/Group:Gender=NOT-MALE/')

@@ -1,7 +1,7 @@
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
-  name: demo-loan-rfc-beta-onnx
+  name: demo-loan-nn-beta-onnx
   annotations:
     serving.kserve.io/deploymentMode: ModelMesh
 spec:

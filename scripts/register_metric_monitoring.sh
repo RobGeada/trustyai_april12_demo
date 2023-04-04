@@ -12,7 +12,7 @@ do
     curl -s --location http://$TRUSTY_ROUTE/metrics/$METRIC_NAME/request \
       --header 'Content-Type: application/json' \
       --data "{
-                \"modelId\": \"demo-loan-rfc-$MODEL\",
+                \"modelId\": \"demo-loan-nn-$MODEL-onnx\",
                 \"protectedAttribute\": \"input-3\",
                 \"favorableOutcome\": {
                   \"type\": \"INT32\",
