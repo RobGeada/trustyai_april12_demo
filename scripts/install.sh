@@ -4,7 +4,7 @@
 ODH_NAMESPACE=trustyai-e2e
 MM_NAMESPACE=trustyai-e2e-modelmesh
 oc new-project $ODH_NAMESPACE
-oc new-project $MM_NAMESPACE
+#oc new-project $MM_NAMESPACE
 
 oc project $ODH_NAMESPACE
 

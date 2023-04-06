@@ -3,16 +3,16 @@
 ODH_NAMESPACE=trustyai-e2e
 MM_NAMESPACE=trustyai-e2e-modelmesh
 
-oc label namespace $MM_NAMESPACE "modelmesh-enabled=true" --overwrite=true || echo "Failed to apply modelmesh-enabled label."
+#oc label namespace $MM_NAMESPACE "modelmesh-enabled=true" --overwrite=true || echo "Failed to apply modelmesh-enabled label."
 oc project $MM_NAMESPACE
 
-oc apply -f resources/secret.yaml
-oc apply -f resources/ovms-1.x.yaml
+#oc apply -f resources/secret.yaml
+#oc apply -f resources/ovms-1.x.yaml
 
-oc new-project $MM_NAMESPACE
+#oc new-project $MM_NAMESPACE
 oc project $MM_NAMESPACE
-oc apply -f resources/model0_onnx.yaml
-oc apply -f resources/model1_onnx.yaml
+#oc apply -f resources/model0_onnx.yaml
+#oc apply -f resources/model1_onnx.yaml
 
 # wait to spin up ======================================================================================================
 echo -n "Waiting on modelserving runtime pods to spin up"
