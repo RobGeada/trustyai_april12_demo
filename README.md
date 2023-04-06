@@ -7,7 +7,7 @@ Run all of the following from the main directory:
 ## Install ODH + TrustyAI
 `scripts/install.sh`
 
-## Deploy Two Random Forest Sklearn Models
+## Deploy Two ONNX Models
 `scripts/deploy_models.sh`
 
 ## Data Scripts
