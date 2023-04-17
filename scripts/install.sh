@@ -12,16 +12,12 @@ oc project $ODH_NAMESPACE
 oc apply -f resources/odh-minimal.yaml
 
 # deploy TrustyAI  =====================================================================================================
-oc apply -f resources/trustyai.yaml
+#oc apply -f resources/trustyai.yaml
 
-# wait for TrustyAI to spin up
-echo -n "Waiting on trustyai pod to spin up"
-while [[ -z "$(oc get pods | grep trustyai-service | grep 1/1)" ]]
-do
-  echo -n "."
-  sleep 5
-done
-echo "[done]"
+oc patch CustomResourceDefinition/odhdashboardconfigs.opendatahub.io --type='json' -p='[{"op": "add", "path": "/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/dashboardConfig/properties/modelMetricsNamespace", "value":{"type":string}}]'
+oc patch OdhDashboardConfig/odh-dashboard-config -p '{"spec":{"dashboardConfig":{"modelMetricsNamespace": "trustyai-e2e"}}}' --type='merge'
+
+
 #
 #ODH_NAMESPACE=trustyai-e2e
 #MM_NAMESPACE=trustyai-e2e-modelmesh

@@ -1,5 +1,6 @@
 ODH_NAMESPACE=trustyai-e2e
 MM_NAMESPACE=trustyai-e2e-modelmesh
+source scripts/const.sh
 
 oc project $ODH_NAMESPACE 2>&1 1>/dev/null
 TRUSTY_ROUTE=$(oc get route/trustyai --template={{.spec.host}})
@@ -11,12 +12,12 @@ round() {
 for METRIC_NAME in "spd" "dir"
 do
   METRIC_UPPERCASE=$(echo ${METRIC_NAME} | tr '[:lower:]' '[:upper:]')
-  for MODEL in "alpha" "beta"
+  for MODEL in $MODEL_ALPHA $MODEL_BETA
   do
     METRIC=$(curl -s -X POST --location "http://$TRUSTY_ROUTE/metrics/$METRIC_NAME" \
         -H "Content-Type: application/json" \
         -d "{
-              \"modelId\": \"demo-loan-nn-$MODEL-onnx\",
+              \"modelId\": \"$MODEL\",
               \"protectedAttribute\": \"input-3\",
               \"favorableOutcome\": {
                 \"type\": \"INT32\",
@@ -40,7 +41,7 @@ do
     METRIC=$(echo $METRIC | sed -e 's/Outcome:output-0=0/Outcome:WILL-NOT-DEFAULT/')
 
     echo
-    echo "== $METRIC_UPPERCASE Bias Report (Model $MODEL)=="
+    echo "== $METRIC_UPPERCASE Bias Report ($MODEL)=="
     echo "$METRIC_UPPERCASE Value: $(round $(echo $METRIC | jq .value) 6)"
     echo "Description:" $(echo $METRIC | jq .specificDefinition)
     echo "Unacceptably biased?" $(echo $METRIC | jq .thresholds.outsideBounds)

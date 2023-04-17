@@ -20,3 +20,5 @@ do
   oc delete $(oc get pvc -o name)
   oc delete $(oc get secrets -o name)
 done
+
+oc delete project $MM_NAMESPACE

@@ -4,11 +4,11 @@
 Run all of the following from the main directory:
 
 # Available Scripts
-## Install ODH + TrustyAI
+## Install ODH 
 `scripts/install.sh`
 
-## Deploy Two ONNX Models
-`scripts/deploy_models.sh`
+## Validate TrustyAI + Models are Spun Up
+`scripts/check_readiness.sh`
 
 ## Data Scripts
 
@@ -35,12 +35,13 @@ Run all of the following from the main directory:
 `scripts/clean.sh`
 
 
-# Suggested Script Order
+# Demo Script Order
 ```bash
 scripts/install.sh
-scripts/deploy_models.sh
+[Deploy the TrustyAI Kfdef via the Openshift UI]
+[Deploy the two models via ODH dashboard into trustyai-e2e-modelmesh project]
+scripts/check_readiness.sh
 scripts/send_data_batch training_data
-scripts/query_fairness_metrics.sh
 scripts/register_metric_monitoring.sh
 scripts/simulate_deployment.sh
 
